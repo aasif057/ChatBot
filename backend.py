@@ -17,7 +17,7 @@ class ChatBot:
         ).choices[0].text
         return response
     
-if __name__ == "__main__":
-    chatbot = ChatBot()
-    response = chatbot.get_response("Tell me about Wipro")
-    print(response)
+# if __name__ == "__main__":
+#     chatbot = ChatBot()
+#     response = chatbot.get_response("Tell me about Wipro")
+#     print(response)
