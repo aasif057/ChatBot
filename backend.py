@@ -1,8 +1,12 @@
 import openai
+import os
+
+api_key = os.environ['OPENAI']
+
 
 class ChatBot:
     def __init__(self):
-        
+        openai.api_key = api_key
 
     def get_response(self, user_input):
         response = openai.Completion.create(
