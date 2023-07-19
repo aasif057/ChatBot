@@ -17,7 +17,7 @@ class ChatBotWindow(QMainWindow):
 
         # Add the input field widget
         self.input_field = QLineEdit(self)
-        self.input_field.setGeometry(10,450,570,40)
+        self.input_field.setGeometry(10,450,500,40)
         self.input_field.returnPressed.connect(self.send_message)
 
         # Add the button
@@ -25,8 +25,21 @@ class ChatBotWindow(QMainWindow):
         self.button.setGeometry(590,450,100,40)
         self.button.setStyleSheet('QPushButton {background-color: #A3C1DA}')
         self.button.clicked.connect(self.send_message)
-           
+        
+        # Add a new button
+        self.button1 = QPushButton("Mic",self)
+        self.button1.setGeometry(520,450,60,40) 
+        self.button1.setStyleSheet('QPushButton {background-color: #A3C1DA}')
+        self.button1.clicked.connect(self.foo)
+
+
         self.show()
+    def foo(self):
+        input = self.chatbot.take_commands()
+        self.chat_area.append(f"<p style='color:#333333'>Me: {input}</p>")
+        thread = threading.Thread(target=self.get_bot_response,args=(input, ))        
+        thread.start()
+    
     def send_message(self):
         user_input = self.input_field.text().strip()
         self.chat_area.append(f"<p style='color:#333333'>Me: {user_input}</p>")
@@ -38,6 +51,7 @@ class ChatBotWindow(QMainWindow):
     def get_bot_response(self,user_input):
         response = self.chatbot.get_response(user_input)
         self.chat_area.append(f"<p style='color:#333333; background-color: #E9E9E9'>Bot:  {response}</p>")
+        self.chatbot.speak(response)
 
 app = QApplication(sys.argv)
 main_window = ChatBotWindow()
