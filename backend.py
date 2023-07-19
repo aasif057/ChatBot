@@ -24,25 +24,14 @@ class ChatBot:
     def speak(self,audio):
         self.engine.say(audio)
         self.engine.runAndWait()
-    def filter_command(self,command):
-        if "Jarvis" in command:
-            command=command.replace("Jarvis","")
-            return command
-        else:
-            return command
     def take_commands(self):
-        
         with sr.Microphone() as Source:
-            #self.speak("please tell your query sir?")
             print("Listening...")
             self.r.pause_threshold=1
             audio=self.r.listen(source = Source, timeout= None, phrase_time_limit= 5)
         try:
-            #self.speak("Recognising...")
             print("Recognising...")
-            command_unf=self.r.recognize_google(audio,language='en-in')
-            #print(f"User asked for  {command_unf}")
-            command=self.filter_command(command_unf)
+            command=self.r.recognize_google(audio,language='en-in')
             print(f"User asked for  {command}")
             return command
         except Exception as e:
