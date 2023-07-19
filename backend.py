@@ -1,17 +1,10 @@
 import pyttsx3
 import speech_recognition as sr
-import datetime
-import webbrowser
 import os
-import requests
-from bs4 import BeautifulSoup
-import psutil
-import pyautogui
 import openai
-from langdetect import detect
-import os
 
-api_key = os.environ['JARVIS']
+
+api_key = os.environ['VOICEGPT']
 
 
 class ChatBot:
