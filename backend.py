@@ -4,7 +4,7 @@ import os
 import openai
 
 
-api_key = os.environ['VOICEGPT']
+api_key = os.environ['JARVIS']
 
 
 class ChatBot:
@@ -17,6 +17,8 @@ class ChatBot:
     def speak(self,audio):
         self.engine.say(audio)
         self.engine.runAndWait()
+    def close_speak(self):
+        self.engine.stop()
     def take_commands(self):
         with sr.Microphone() as Source:
             print("Listening...")

@@ -52,7 +52,7 @@ class ChatBotWindow(QMainWindow):
         response = self.chatbot.get_response(user_input)
         self.chat_area.append(f"<p style='color:#333333; background-color: #E9E9E9'>Bot:  {response}</p>")
         self.chatbot.speak(response)
-
+        self.chatbot.close_speak()
 app = QApplication(sys.argv)
 main_window = ChatBotWindow()
 main_window.setStyleSheet("QMainWindow {background: 'grey';}")
