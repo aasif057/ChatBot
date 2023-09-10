@@ -4,7 +4,7 @@ import os
 import openai
 
 
-api_key = os.environ['JARVIS']
+api_key = os.environ['OpenAI']
 
 
 class ChatBot:
